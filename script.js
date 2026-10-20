@@ -150,4 +150,131 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+    // Project Image Sliders
+    const projectSliders = document.querySelectorAll('.project-slider');
+
+    projectSliders.forEach(slider => {
+        const slides = slider.querySelectorAll('.slide');
+        const prevBtn = slider.querySelector('.prev-btn');
+        const nextBtn = slider.querySelector('.next-btn');
+        const dotsContainer = slider.querySelector('.slider-dots');
+        
+        if (slides.length <= 1) {
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (dotsContainer) dotsContainer.style.display = 'none';
+            return;
+        }
+
+        let currentIndex = 0;
+        let autoPlayTimer = null;
+        const autoPlayEnabled = slider.getAttribute('data-autoplay') !== 'false';
+        const intervalTime = parseInt(slider.getAttribute('data-interval'), 10) || 4000;
+
+        // Generate indicators/dots
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.className = `slider-dot ${idx === 0 ? 'active' : ''}`;
+                dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToSlide(idx);
+                    resetAutoplay();
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateDots() {
+            if (!dotsContainer) return;
+            const dots = dotsContainer.querySelectorAll('.slider-dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentIndex);
+            });
+        }
+
+        function goToSlide(index) {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (index + slides.length) % slides.length;
+            slides[currentIndex].classList.add('active');
+            updateDots();
+        }
+
+        function nextSlide() {
+            goToSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(currentIndex - 1);
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextSlide();
+                resetAutoplay();
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevSlide();
+                resetAutoplay();
+            });
+        }
+
+        // Autoplay management
+        function startAutoplay() {
+            if (!autoPlayEnabled || autoPlayTimer) return;
+            autoPlayTimer = setInterval(nextSlide, intervalTime);
+        }
+
+        function stopAutoplay() {
+            if (autoPlayTimer) {
+                clearInterval(autoPlayTimer);
+                autoPlayTimer = null;
+            }
+        }
+
+        function resetAutoplay() {
+            stopAutoplay();
+            startAutoplay();
+        }
+
+        // Pause autoplay on mouse hover so user can inspect slide
+        slider.addEventListener('mouseenter', stopAutoplay);
+        slider.addEventListener('mouseleave', startAutoplay);
+
+        // Touch swipe support for mobile devices
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoplay();
+        }, { passive: true });
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoplay();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diffX = touchEndX - touchStartX;
+            if (Math.abs(diffX) > 40) {
+                if (diffX < 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+
+        startAutoplay();
+    });
 });
