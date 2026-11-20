@@ -214,14 +214,162 @@ section {
 
 /* Hero Section */
 .hero-section {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     padding-top: var(--nav-height);
+    position: relative;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    width: 100%;
 }
 
 .hero-content {
-    max-width: 800px;
+    flex: 1.2;
+    max-width: 650px;
+}
+
+.hero-avatar-wrapper {
+    flex: 0.95;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.avatar-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    border: 1px solid var(--glass-border);
+    border-radius: 36px;
+    padding: 24px 20px 0;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.avatar-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 240, 255, 0.35);
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 240, 255, 0.15);
+}
+
+.avatar-card-glow {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.25) 0%, rgba(112, 0, 255, 0.18) 50%, transparent 75%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.avatar-img-box {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 28px 28px 24px 24px;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.04), transparent 70%);
+    /* smooth fade out at the very bottom edge so cutoffs look seamless */
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+.hero-avatar-img {
+    width: 100%;
+    max-width: 370px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.avatar-card:hover .hero-avatar-img {
+    transform: scale(1.03);
+}
+
+/* Floating Tech Badges */
+.avatar-badge {
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    background: rgba(10, 10, 15, 0.85);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    border-radius: 50px;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    animation: badgeFloat 5s ease-in-out infinite alternate;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.avatar-badge i {
+    font-size: 1.05rem;
+}
+
+.badge-flutter {
+    top: 40px;
+    left: -25px;
+    border-color: rgba(0, 240, 255, 0.4);
+    animation-delay: 0s;
+}
+
+.badge-flutter i {
+    color: #00f0ff;
+}
+
+.badge-android {
+    top: 130px;
+    right: -25px;
+    border-color: rgba(61, 220, 132, 0.4);
+    animation-delay: 1.5s;
+}
+
+.badge-android i {
+    color: #3ddc84;
+}
+
+.badge-exp {
+    bottom: 25px;
+    left: -15px;
+    border-color: rgba(112, 0, 255, 0.4);
+    animation-delay: 2.5s;
+}
+
+.badge-exp i {
+    color: #a855f7;
+}
+
+@keyframes badgeFloat {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-8px);
+    }
 }
 
 .hero-content h2 {
@@ -806,6 +954,64 @@ footer {
     .menu-toggle {
         display: block;
         z-index: 100;
+    }
+
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 40px;
+        padding-top: 40px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content p {
+        margin: 0 auto 30px;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .hero-avatar-wrapper {
+        max-width: 320px;
+        margin: 20px auto 0;
+    }
+
+    .avatar-card {
+        padding: 16px 14px 0;
+        border-radius: 28px;
+    }
+
+    .avatar-card-glow {
+        width: 200px;
+        height: 200px;
+    }
+
+    .hero-avatar-img {
+        max-width: 260px;
+    }
+
+    .avatar-badge {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
+    .badge-flutter {
+        top: 20px;
+        left: -10px;
+    }
+
+    .badge-android {
+        top: 90px;
+        right: -10px;
+    }
+
+    .badge-exp {
+        bottom: 15px;
+        left: -5px;
     }
 
     .hero-content h1 {
