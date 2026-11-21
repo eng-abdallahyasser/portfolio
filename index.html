@@ -40,6 +40,14 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
+                <button type="button" id="themeToggle" class="theme-toggle-btn" aria-label="Toggle light and dark mode" title="Toggle theme">
+                    <i class="fas fa-moon theme-icon-dark"></i>
+                    <i class="fas fa-sun theme-icon-light"></i>
+                </button>
+                <a href="abdallah%20yasser%20abdallah.pdf" target="_blank" rel="noopener noreferrer" class="nav-cv-btn" title="View CV in new tab">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>CV</span>
+                </a>
                 <div class="nav-socials">
                     <a href="https://github.com/eng-abdallahyasser" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
                         <i class="fab fa-github"></i>
@@ -65,7 +73,12 @@
                     <p class="reveal-text delay-2">Mobile Application Engineer with 3+ years of experience in Android Native & Flutter. Specialized in building scalable, high-performance applications using Clean Architecture and MVVM.</p>
                     <div class="hero-btns reveal-text delay-3">
                         <a href="#projects" class="btn btn-primary">View Projects</a>
-                        <a href="mailto:abdallahyasser1277@gmail.com" class="btn btn-secondary">Hire Me</a>
+                        <a href="abdallah%20yasser%20abdallah.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-cv">
+                            <i class="fas fa-file-pdf"></i> View CV
+                        </a>
+                        <a href="abdallah%20yasser%20abdallah.pdf" download="Abdallah_Yasser_CV.pdf" class="btn btn-cv-download">
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
                     </div>
                 </div>
                 <div class="hero-avatar-wrapper reveal-text delay-2">
@@ -130,6 +143,60 @@
                 </div>
 
                 <div class="projects-grid">
+                    <!-- Project: Shineup -->
+                    <div class="project-card">
+                        <div class="project-img project-slider" data-autoplay="true" data-interval="4000">
+                            <div class="slider-track">
+                                <div class="slide active">
+                                    <img src="projects/shineup/1.png" alt="Shineup Mobile App - Screen 1">
+                                </div>
+                                <div class="slide">
+                                    <img src="projects/shineup/111.png" alt="Shineup Mobile App - Screen 2">
+                                </div>
+                                <div class="slide">
+                                    <img src="projects/shineup/22.png" alt="Shineup Mobile App - Screen 3">
+                                </div>
+                                <div class="slide">
+                                    <img src="projects/shineup/33.png" alt="Shineup Mobile App - Screen 4">
+                                </div>
+                                <div class="slide">
+                                    <img src="projects/shineup/xczxc.png" alt="Shineup Mobile App - Screen 5">
+                                </div>
+                            </div>
+                            <button class="slider-btn prev-btn" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-btn next-btn" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                            <div class="slider-dots"></div>
+                            <div class="project-overlay">
+                                <a href="https://shineupapp.com/" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Landing Page" title="Visit Landing Page"><i class="fas fa-globe"></i></a>
+                                <a href="https://play.google.com/store/apps/details?id=com.shineup.shineup" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Google Play Store" title="Google Play"><i class="fab fa-google-play"></i></a>
+                                <a href="https://apps.apple.com/sa/app/shineup-%D8%B4%D8%A7%D9%8A%D9%86-%D8%A2%D8%A8/id6792269696" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Apple App Store" title="App Store"><i class="fab fa-apple"></i></a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span>Flutter</span>
+                                <span>Clean Architecture</span>
+                                <span>Cubit</span>
+                                <span>Moyasar Pay</span>
+                                <span>Google Maps</span>
+                                <span>Firebase</span>
+                            </div>
+                            <h3>Shineup | شاين آب</h3>
+                            <p>Cross-platform car-wash & detailing marketplace in Saudi Arabia. Features automated bookings, Moyasar online payments & recurring subscriptions, live map routing, Ar/En RTL localization, and deep linking.</p>
+                            <div class="project-actions">
+                                <a href="https://shineupapp.com/" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                    <i class="fas fa-globe"></i> Website
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.shineup.shineup" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                    <i class="fab fa-google-play"></i> Play Store
+                                </a>
+                                <a href="https://apps.apple.com/sa/app/shineup-%D8%B4%D8%A7%D9%8A%D9%86-%D8%A2%D8%A8/id6792269696" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                    <i class="fab fa-apple"></i> App Store
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Project 1: Gym & Fitness -->
                     <div class="project-card">
                         <div class="project-img project-slider" data-autoplay="true" data-interval="4000">
@@ -289,6 +356,14 @@
                     <h2>Work Experience</h2>
                 </div>
                 <div class="experience-list">
+                    <div class="experience-item">
+                        <div class="exp-date">06/2024 - Present</div>
+                        <div class="exp-content">
+                            <h3>Mobile Application Developer</h3>
+                            <p class="company">Shineup Company, Saudi Arabia (Qatif city)</p>
+                            <p>Built a cross-platform Flutter car-wash marketplace using Clean Architecture, Cubit, Moyasar payments, Google Maps, and Firebase with full Ar/En RTL support, deep linking, and automated subscriptions.</p>
+                        </div>
+                    </div>
                     <div class="experience-item">
                         <div class="exp-date">2025 - Present</div>
                         <div class="exp-content">

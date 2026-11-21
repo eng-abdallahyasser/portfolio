@@ -1,4 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Theme Toggle Logic (Dark / Light Mode)
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+
+    const setTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('portfolio-theme', theme);
+    };
+
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else if (prefersDark.matches) {
+        setTheme('dark');
+    } else {
+        setTheme('dark'); // Default to dark aesthetic
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(nextTheme);
+        });
+    }
+
     // Reveal animations on load
     const reveals = document.querySelectorAll('.reveal-text');
     
@@ -121,6 +147,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (modal && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
     });
 
